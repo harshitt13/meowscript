@@ -4,43 +4,110 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
+	"strconv"
+	"strings"
 )
 
-type Request struct {
-	Code string `json:"code"`
+// Data types
+type Value struct {
+	Type  string // "number", "string", "boolean"
+	Value interface{}
 }
 
-type Response struct {
-	Output string `json:"output"`
-	Error  string `json:"error,omitempty"`
+// Variables
+var variables = make(map[string]Value)
+
+// Tokenize the input code
+func tokenize(code string) []string {
+	return strings.FieldsFunc(code, func(r rune) bool {
+		return r == ' ' || r == '\n' || r == '\t' || r == ';'
+	})
 }
 
-func executeMaScript(code string) string {
-	// Placeholder: You need to implement MaScript's parsing and execution logic here.
-	return fmt.Sprintf("Executing MaScript: %s", code)
-}
+// Parse and execute MeowScript code
+func executeMeowScript(code string) string {
+	tokens := tokenize(code)
+	output := ""
 
-func handler(w http.ResponseWriter, r *http.Request) {
-	if r.Method != http.MethodPost {
-		http.Error(w, "Method Not Allowed", http.StatusMethodNotAllowed)
-		return
+	for i := 0; i < len(tokens); i++ {
+		token := tokens[i]
+
+		switch token {
+		case "purr":
+			// Variable declaration
+			name := tokens[i+1]
+			i += 2 // Skip "="
+			value := tokens[i]
+			variables[name] = parseValue(value)
+		case "meow":
+			// Print statement
+			value := tokens[i+1]
+			output += fmt.Sprintf("%v\n", evalExpression(value))
+			i++
+		case "if":
+			// Conditional statement
+			condition := tokens[i+1]
+			i += 2 // Skip "{"
+			if evalCondition(condition) {
+				output += executeMeowScript(strings.Join(tokens[i:], " "))
+			}
+		}
 	}
 
-	var req Request
-	err := json.NewDecoder(r.Body).Decode(&req)
-	if err != nil {
-		http.Error(w, "Bad Request", http.StatusBadRequest)
-		return
+	return output
+}
+
+// Parse a value (number, string, boolean)
+func parseValue(value string) Value {
+	if num, err := strconv.ParseFloat(value, 64); err == nil {
+		return Value{Type: "number", Value: num}
 	}
+	if value == "true" || value == "false" {
+		return Value{Type: "boolean", Value: value == "true"}
+	}
+	return Value{Type: "string", Value: strings.Trim(value, `"`)}
+}
 
-	output := executeMaScript(req.Code)
+// Evaluate an expression (e.g., "x + y")
+func evalExpression(expr string) interface{} {
+	if val, ok := variables[expr]; ok {
+		return val.Value
+	}
+	return expr
+}
 
-	res := Response{Output: output}
-	w.Header().Set("Content-Type", "application/json")
-	json.NewEncoder(w).Encode(res)
+// Evaluate a condition (e.g., "x > 0")
+func evalCondition(cond string) bool {
+	parts := strings.Split(cond, " ")
+	left := evalExpression(parts[0])
+	right := evalExpression(parts[2])
+
+	switch parts[1] {
+	case ">":
+		return left.(float64) > right.(float64)
+	case "<":
+		return left.(float64) < right.(float64)
+	case "==":
+		return left == right
+	}
+	return false
+}
+
+// API handler
+func executeHandler(w http.ResponseWriter, r *http.Request) {
+	var req struct {
+		Code string `json:"code"`
+	}
+	json.NewDecoder(r.Body).Decode(&req)
+
+	output := executeMeowScript(req.Code)
+	json.NewEncoder(w).Encode(struct {
+		Output string `json:"output"`
+	}{Output: output})
 }
 
 func main() {
-	http.HandleFunc("/", handler)
+	http.HandleFunc("/execute", executeHandler)
+	fmt.Println("Server running on http://localhost:8080")
 	http.ListenAndServe(":8080", nil)
 }
