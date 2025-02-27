@@ -1,8 +1,3 @@
-
----
-
-### 🎨 **Frontend README (frontend/README.md)**
-```markdown
 # 🐱 MeowScript Frontend
 
 The **frontend** for MeowScript, providing a user-friendly interface to write and execute MeowScript code.
