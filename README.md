@@ -7,7 +7,7 @@ MeowScript is a **fun and simple** programming language with cat-themed syntax! 
 - 📢 **Printing output** (`meow("Hello, World!")`)
 - 🔄 **Loops** (`while (condition) { ... }`)
 - 🤔 **Conditionals** (`if (condition) { ... }`)
-- ⏳ **Delays** (`catnap(seconds)`) 
+- ⏳ **Delays** (`catnap(seconds)`)
 - 🐾 **Error handling** (`try { ... } scratch { ... }`)
 - 🐱 **Cat-themed syntax!**
 
@@ -38,20 +38,20 @@ z = x + y
 meow("The sum is: " + z)
 
 if (z > 10) {
-    meow("😺 " + z + " is greater than 10!")
+  meow("😺 " + z + " is greater than 10!")
 }
 
 purr()
 
 while (z < 20) {
-    z = z + 2
-    meow("z is now: " + z)
+  z = z + 2
+  meow("z is now: " + z)
 }
 
 try {
-    meow(undefinedVar)  // This should throw an error
+  meow(undefinedVar)  // This should throw an error
 } scratch {
-    meow("Caught an error! 😼")
+  meow("Caught an error! 😼")
 }`;
 
 interpreter.execute(code).then(output => console.log(output));
@@ -87,24 +87,24 @@ y = x + 8
 ### 🐾 Conditional Statements
 ```meowscript
 if (x > 40) {
-    meow("x is big!")
+  meow("x is big!")
 }
 ```
 
 ### 🐾 Loops
 ```meowscript
 while (x < 50) {
-    x = x + 1
-    meow("x is now: " + x)
+  x = x + 1
+  meow("x is now: " + x)
 }
 ```
 
 ### 🐾 Error Handling
 ```meowscript
 try {
-    meow(undefinedVar)
+  meow(undefinedVar)
 } scratch {
-    meow("Caught an error! 😼")
+  meow("Caught an error! 😼")
 }
 ```
 
