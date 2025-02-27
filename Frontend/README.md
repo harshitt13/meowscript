@@ -1,8 +1,34 @@
-# React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+---
 
-Currently, two official plugins are available:
+### 🎨 **Frontend README (frontend/README.md)**
+```markdown
+# 🐱 MeowScript Frontend
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+The **frontend** for MeowScript, providing a user-friendly interface to write and execute MeowScript code.
+
+## ✨ Features
+- 🎨 **Modern, cat-themed UI**
+- 🖊️ **Interactive code editor**
+- 🚀 **Run MeowScript code in the browser**
+- 🌈 **Soft pastel color theme**
+- 📜 **Playground + Documentation**
+
+---
+
+## 🏗️ Technologies Used
+| Framework/Library | Purpose |
+|------------------|---------|
+| **React** | UI development |
+| **Vite** | Fast build and dev server |
+| **CodeMirror** | Code editor for writing MeowScript |
+| **Axios** | Handles API requests to backend |
+| **CSS** | Custom styling for a soft pastel theme |
+
+---
+
+## 🛠️ Setup Instructions
+### 1️⃣ Clone the Repository
+```sh
+git clone https://github.com/yourusername/MeowScript.git
+cd MeowScript/frontend
