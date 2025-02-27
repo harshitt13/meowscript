@@ -5,12 +5,12 @@ class MeowScriptInterpreter {
   }
 
   async execute(code) {
-      const lines = code.split('\n').map(line => line.trim());
+      const lines = code.split('\n').map(line => line.trim()).filter(line => line);
       let i = 0;
       while (i < lines.length) {
           i = await this.runLine(lines[i], lines, i);
       }
-      return this.output.join("\n"); // Return final output
+      return this.output.join(" "); // Ensure proper formatting
   }
 
   async runLine(line, lines, index) {
@@ -23,7 +23,7 @@ class MeowScriptInterpreter {
               const match = line.match(/meow\((.*)\)/);
               if (match) {
                   const result = eval(this.replaceVars(match[1]));
-                  this.output.push(result); // Store output instead of console.log
+                  this.output.push(result.toString()); // Store output correctly
               }
           } else if (line.includes("=")) {
               const [key, value] = line.split("=").map(s => s.trim());
@@ -65,12 +65,18 @@ class MeowScriptInterpreter {
   async handleWhileLoop(lines, index) {
       const conditionMatch = lines[index].match(/while\s*\((.*)\)\s*\{/);
       if (conditionMatch) {
-          const loopStart = index;
+          let loopStart = index;
+          let loopBlock = [];
+          index++;
+
+          while (index < lines.length && !lines[index].trim().startsWith("}")) {
+              loopBlock.push(lines[index].trim());
+              index++;
+          }
+
           while (eval(this.replaceVars(conditionMatch[1]))) {
-              let tempIndex = loopStart + 1;
-              while (tempIndex < lines.length && !lines[tempIndex].trim().startsWith("}")) {
-                  await this.runLine(lines[tempIndex].trim(), lines, tempIndex);
-                  tempIndex++;
+              for (let cmd of loopBlock) {
+                  await this.runLine(cmd, lines, loopStart);
               }
           }
       }
@@ -111,3 +117,5 @@ class MeowScriptInterpreter {
       });
   }
 }
+
+module.exports = MeowScriptInterpreter;
