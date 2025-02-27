@@ -1,0 +1,202 @@
+/* styles.css */
+body {
+  background-color: #fdf7f2; /* Soft beige background */
+  background-image: url('/paw-print.png'); /* Ensure correct path */
+  background-size: 400px; /* Increased size of paw prints */
+  background-repeat: repeat;
+  background-position: center;
+  color: #3c3c3c;
+  font-family: 'Roboto', sans-serif; /* Modern font */
+  text-align: center;
+  margin: 0;
+  padding: 20px;
+}
+
+/* Fixing background dimming issue */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('/paw-print.png') repeat;
+  background-size: 400px; /* Corrected typo */
+  opacity: 0.5; /* Adjusted to be even lighter */
+  z-index: -1;
+}
+
+/* Added a white box around the title and subtitle */
+.header-container {
+  background: rgba(255, 255, 255, 0.9); /* Soft white */
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  display: inline-block;
+  margin: 20px auto;
+  text-align: center;
+}
+
+.title {
+  color: #d36b9a; /* Soft pink */
+  font-size: 3rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  color: #88aaff; /* Soft blue */
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+}
+
+.container {
+  max-width: 800px;
+  margin: auto;
+  padding: 20px;
+}
+
+.playground {
+  background: #ffffff;
+  border-radius: 15px;
+  padding: 30px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  margin-top: 30px;
+}
+
+.code-editor {
+  width: 100%;
+  height: 250px;
+  border: 2px solid #d36b9a;
+  border-radius: 10px;
+  padding: 20px;
+  font-size: 1.1rem;
+  background: #fef7f2;
+  font-family: 'Courier New', monospace;
+}
+
+.run-btn {
+  background-color: #88aaff;
+  color: white;
+  border: none;
+  padding: 15px 30px;
+  margin-top: 20px;
+  cursor: pointer;
+  font-size: 1.1rem;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+}
+
+.run-btn:hover {
+  background-color: #6b8eda;
+}
+
+.output {
+  background: #fef7f2;
+  border: 2px dashed #88aaff;
+  padding: 20px;
+  margin-top: 20px;
+  border-radius: 10px;
+}
+
+/* Documentation container */
+.documentation-container {
+  background-color: #fdf6e3;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  max-width: 900px;
+  margin: 30px auto;
+  font-family: 'Roboto', sans-serif;
+  color: #444;
+}
+
+.documentation-container h2 {
+  text-align: center;
+  color: #d36b9a;
+  font-size: 28px;
+  margin-bottom: 25px;
+}
+
+.documentation-container p {
+  text-align: center;
+  font-size: 20px;
+  margin-bottom: 25px;
+  color: #666;
+}
+
+/* Code styling */
+.code {
+  display: block;
+  background-color: #e8f4ff;
+  color: #333;
+  font-family: 'Courier New', monospace;
+  padding: 15px;
+  border-radius: 8px;
+  margin-top: 15px;
+  white-space: pre-wrap;
+}
+
+/* List styling */
+.documentation-container ul {
+  list-style-type: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 25px;
+}
+
+.documentation-container li {
+  background: rgba(255, 228, 225, 0.6);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.05);
+  list-style: none;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.documentation-container li:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.documentation-container li strong {
+  color: #d36b9a;
+  font-size: 20px;
+}
+
+/* Adding whisker dividers */
+.documentation-container li::after {
+  content: " ~~~ ";
+  display: block;
+  text-align: center;
+  color: #aaa;
+  margin-top: 15px;
+}
+
+/* Ensuring the container adapts properly */
+textarea {
+  max-width: 100%;
+  box-sizing: border-box;
+  border-radius: 8px;
+  border: 1px solid #d88;
+  padding: 10px;
+}
+
+/* GitHub icon styling */
+.github-link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 40px;
+}
+
+.github-icon {
+  width: 40px;
+  height: 22.5px;
+  transition: transform 0.3s ease;
+}
+
+.github-icon:hover {
+  transform: scale(1.1);
+}
