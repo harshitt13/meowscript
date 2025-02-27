@@ -21,9 +21,3 @@ The **frontend** for MeowScript, providing a user-friendly interface to write an
 | **CSS** | Custom styling for a soft pastel theme |
 
 ---
-
-## 🛠️ Setup Instructions
-### 1️⃣ Clone the Repository
-```sh
-git clone https://github.com/yourusername/MeowScript.git
-cd MeowScript/frontend
