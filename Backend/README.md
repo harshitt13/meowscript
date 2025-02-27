@@ -20,9 +20,3 @@ The backend for **MeowScript**, responsible for executing code and returning res
 | **Body-parser** | Parses JSON request bodies |
 
 ---
-
-## 🛠️ Setup Instructions
-### 1️⃣ Clone the Repository
-```sh
-git clone https://github.com/yourusername/MeowScript.git
-cd MeowScript/backend
