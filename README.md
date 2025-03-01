@@ -1,4 +1,4 @@
-# 🐱 MeowScript Interpreter
+# 🐱 MeowScript
 
 MeowScript is a **fun and simple** programming language with cat-themed syntax! This is an interpreter for MeowScript, built using JavaScript.
 
