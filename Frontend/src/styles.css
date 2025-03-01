@@ -226,9 +226,12 @@ textarea {
 
 .github-icon {
   width: 40px;
-  height: 22.5px;
+  height: 40px;
   transition: transform 0.3s ease;
+  border-radius: 50%; /* Makes the icon circular */
+  overflow: hidden; /* Ensures the edges are clipped if needed */
 }
+
 
 .github-icon:hover {
   transform: scale(1.1);
